@@ -1,6 +1,12 @@
 # RPG
 Jeu de rôles informatiques
 
+Règles du jeu:
+
+Remplir le fichier table_faits.csv après avoir agi au sein de l'asso, puis executer RPG.py.
+
+Chaque membre qui le souhaite peut mettre à jour n'importe quel fichier du dépôt.
+
 Le dépôt est constitué de trois fichiers:
 + actions.csv
 + table_faits.csv
