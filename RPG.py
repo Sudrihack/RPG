@@ -28,6 +28,28 @@ def creer_fichier_scores(scores_tries):
         for nom, score in scores_tries:
             f.write(f'{nom},{score}\n')
 
+def dictionnaire(lignes):
+    res = {}
+    for action, categorie, points in lignes:
+        res[action] = [categorie, points] # la premiere colonne fait office de clef primaire
+    return res
+        
+def recuperer_profil(nom, actions, faits):
+    profil = {}
+    actions = dictionnaire(actions)
+
+    for date, nom_etudiant, action in faits:
+        if action in actions:
+            categorie, points_action = actions[action]
+        else:
+            print(f'L\'action "{action}" n\'existe pas.')
+        if nom_etudiant == nom:
+            if not categorie in profil:
+                profil[categorie] = int(points_action)
+            else:
+                profil[categorie] += int(points_action)
+    return profil
+        
 if __name__ == '__main__':
     actions = recuperer_lignes('actions.csv') # magick str
     faits = recuperer_lignes('table_faits.csv')
@@ -54,3 +76,7 @@ if __name__ == '__main__':
     print(*scores_tries, sep='\n')
 
     creer_fichier_scores(scores_tries)
+
+    # tests pour la fonction recuperer_profil
+    print(recuperer_profil('demol', actions, faits))
+    print(recuperer_profil('reiffers', actions, faits))
